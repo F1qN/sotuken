@@ -7,8 +7,8 @@ from PIL import Image,ImageTk
 WIDTH = 3100
 HEIGHT = 1682.5
 
-CHAIR_GAP = 45 #Between Chairs
-TABLE_GAP = 20
+CHAIR_GAP = 40 #Between Chairs
+TABLE_GAP = 40
 
 CANT_PUT_Y =[2,7,12]
 CANT_PUT_X =[0]

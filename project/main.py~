@@ -76,7 +76,7 @@ RoundTable_img = Image.open('round.png')
 RoundHalf_img = Image.open('round_half.png')
 Table_img = ImageTk.PhotoImage(Table_img)
 RoundTable_img = ImageTk.PhotoImage(RoundTable_img)
-RoundHalf_img = ImageTk.PhotoImage(RoundHalf_img)
+RoundHalf_img = ImageTk.photoImage(RoundHalf_img)
 
 canvas.place(x=100,y=100)
 
