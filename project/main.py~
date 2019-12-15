@@ -8,19 +8,21 @@ WIDTH = 3100
 HEIGHT = 1682.5
 
 CHAIR_GAP = 40 #Between Chairs
-
+TABLE_GAP = 40
 CANT_PUT_Y =[2,7,12]
-CANT_PUT_X =[0]
+CANT_PUT_X =[]
 
-CANT_PUT   =["7-0","7-1","7-3","7-4","7-5","7-6","8-0","8-1","3-0","3-8","3-9","6-0","6-8","6-9","9-0","9-8","9-9","12-0","12-8","12-9"]
+CANT_PUT   =["0-1","0-2","0-3","0-4","0-5","0-6","0-7","0-8","0-9","0-10","0-11","0-12","7-0","7-1","7-3","7-4","7-5","7-6","8-0","8-1","3-0","3-8","3-9","6-0","6-8","6-9","9-0","9-8","9-9","12-0","12-8","12-9"]
 ROUNDTABLE_PUT = ["3-8","6-8","9-8","12-8"]
 ROUNDHALF_PUT = ["3-0","6-0","9-0","12-0"]
+WINDOWTABLE_PUT = ["0-0"]
 #13*15
 
 #Conversion for Grapics
 gra_WIDTH = (WIDTH/4)
 gra_HEIGHT= (HEIGHT/4)
 gra_CHAIR_GAP =(CHAIR_GAP/4)
+gra_TABLE_GAP = (TABLE_GAP/4)
 #
 
 
@@ -32,6 +34,8 @@ def CheckPut_Point(x,y,num):
         LIST = ROUNDTABLE_PUT
     elif(num==2):
         LIST = ROUNDHALF_PUT
+    elif(num==3):
+        LIST = WINDOWTABLE_PUT
     else :
         LIST = CANT_PUT
 
@@ -71,30 +75,38 @@ canvas  = tkinter.Canvas(world,width = 1280,height=720)
 canvas.create_rectangle(0,0,(gra_WIDTH),(gra_HEIGHT),fill = 'green')
 
 #画像データ読込
-Table_img = Image.open('objset.png')
-RoundTable_img = Image.open('round.png')
-RoundHalf_img = Image.open('round_half.png')
-Table_img = ImageTk.PhotoImage(Table_img)
+Table_img       = Image.open('objset.png')
+RoundTable_img  = Image.open('round.png')
+RoundHalf_img   = Image.open('round_half.png')
+WindowTable_img = Image.open('windowtable.png')
+
+Table_img      = ImageTk.PhotoImage(Table_img)
 RoundTable_img = ImageTk.PhotoImage(RoundTable_img)
-RoundHalf_img = ImageTk.photoImage(RoundHalf_img)
+RoundHalf_img  = ImageTk.PhotoImage(RoundHalf_img)
+WindowTable_img= ImageTk.PhotoImage(WindowTable_img)
 
 canvas.place(x=100,y=100)
 
 #Slip はマスの開始位置をずらす必要があるときに使う変数,Slipが表す長さ分だけ上に配置される。
 Slip = 0
 
+
 for y in range(13):
     if (CheckPut(y,0)):
         for x in range(15):
             if(CheckPut_Point(x,y,0) and CheckPut(x,1)):
-                canvas.create_image((x*30)+(x*gra_CHAIR_GAP),(y*30)-Slip,image=Table_img,anchor=tkinter.NW)
+                canvas.create_image((x*30)+(x*gra_CHAIR_GAP),(y*30)+(y*gra_TABLE_GAP)-Slip,image=Table_img,anchor=tkinter.NW)
+
             elif(not CheckPut_Point(x,y,1)):
-                canvas.create_image((x*30)+(x*gra_CHAIR_GAP),(y*30)-Slip,image=RoundTable_img,anchor=tkinter.NW)
+                canvas.create_image((x*30)+(x*gra_CHAIR_GAP),(y*30)+(y*gra_TABLE_GAP)-Slip,image=RoundTable_img,anchor=tkinter.NW)
             elif(not CheckPut_Point(x,y,2)):
-                canvas.create_image((x*30)+(x*gra_CHAIR_GAP),(y*30)-Slip,image=RoundHalf_img,anchor=tkinter.NW)
+                canvas.create_image((x*30)+(x*gra_CHAIR_GAP),(y*30)+(y*gra_TABLE_GAP)-Slip,image=RoundHalf_img,anchor=tkinter.NW)
+            elif(not CheckPut_Point(x,y,3)):
+                canvas.create_image((x*30)+(x*gra_CHAIR_GAP),(y*30)+(y*gra_TABLE_GAP)-Slip,image=WindowTable_img,anchor=tkinter.NW)
+
 
     else :
-        Slip+=5
+        Slip+=25
 
 
 

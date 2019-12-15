@@ -75,10 +75,10 @@ canvas  = tkinter.Canvas(world,width = 1280,height=720)
 canvas.create_rectangle(0,0,(gra_WIDTH),(gra_HEIGHT),fill = 'green')
 
 #画像データ読込
-Table_img       = Image.open('objset.png')
-RoundTable_img  = Image.open('round.png')
-RoundHalf_img   = Image.open('round_half.png')
-WindowTable_img = Image.open('windowtable.png')
+Table_img       = Image.open('img/objset.png')
+RoundTable_img  = Image.open('img/round.png')
+RoundHalf_img   = Image.open('img/round_half.png')
+WindowTable_img = Image.open('img/windowtable.png')
 
 Table_img      = ImageTk.PhotoImage(Table_img)
 RoundTable_img = ImageTk.PhotoImage(RoundTable_img)

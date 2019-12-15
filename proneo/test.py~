@@ -1,0 +1,9 @@
+import ShockDoWorld as sdw
+
+sd = sdw.ShockDoWorld()
+
+
+
+sd.draw_back()
+sd.draw_grid()
+sd.world.mainloop()
