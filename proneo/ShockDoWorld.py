@@ -1,7 +1,7 @@
-
 import random
 import tkinter
-import human 
+import human
+import DataConverter as dc
 from PIL import Image,ImageTk
 
 CELL_HIGHT = 10
@@ -71,12 +71,12 @@ class ShockDoWorld :
         #Slip はマスの開始位置をずらす必要があるときに使う変数,Slipが表す長さ分だけ上に配置される。
         self.Slip = 0
 
+        AbleStay = dc.data()
         self.humans = []
-        self.humans.append(human.human(1,5,5))
 
-        self.humans.append(human.human(1,6,6))
-        self.humans.append(human.human(1,6,8))
-        self.humans.append(human.human(1,6,10))
+        for i in range(AbleStay.getLength()):
+            self.humans.append(human.human(1,AbleStay.getX(i),AbleStay.getY(i)))
+
         self.world.after(10,self.update_humans)
     
     
